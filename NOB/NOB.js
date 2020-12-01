@@ -173,7 +173,7 @@ function Inicio() {
   env.vuelca = false;
   set(0, 0, fondoInicio);
   if (mouseX > width/2 && mouseY > height/4) {
-    image(vGrande, 0,0);
+    image(vGrande, width/2, height/2);
     image(mInicio, width/2, height/2);
   } else if (mouseX < width/2 && mouseY > height/4) {
     image(mGrande, width/2, height/2);
