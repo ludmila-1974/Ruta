@@ -76,7 +76,7 @@ function setup() {
 
 function draw() {
 
-  imageMode(CENTER);
+  //imageMode(CENTER);
 
   if (pasos === 0) {
     Inicio();
