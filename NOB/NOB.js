@@ -314,9 +314,9 @@ function vPaso1() {
   //----------MOSTRACION-------------
   //---------------------------------
 
-  image(perderV, width/2 + posX, height/2 + posY);
-  image(fondoCombi, width/2, height/2);
-  image(relleno, width/2 + posX, height/2 + posY);
+  image(perderV, posX, posY);
+  image(fondoCombi, 0, 0);
+  image(relleno, posX, posY);
 
 
   //---------------------------------
@@ -340,7 +340,7 @@ function vPaso1() {
   translate(-width/2, height*(1-0.042));
   pop();
 
-  image(personajeV, width/2 + posX, height/2 + 31 + posY);
+  image(personajeV, posX, posY);
 
 
 
@@ -387,7 +387,7 @@ function vPaso1() {
       pasos=3;
     }
   }
-  image(brazosV, width/2 + posX, height/2  + posY);
+  image(brazosV, posX, posY);
   env.torcer();
 }
 
@@ -472,9 +472,9 @@ function mPaso1() {
   //----------MOSTRACION-------------
   //---------------------------------
 
-  image(perderV, width/2 + posX, height/2 + posY);
-  image(fondoCombi, width/2, height/2);
-  image(relleno, width/2 + posX, height/2 + posY);
+  image(perderV, posX, posY);
+  image(fondoCombi, 0, 0);
+  image(relleno, posX, posY);
 
 
   //---------------------------------
@@ -498,7 +498,7 @@ function mPaso1() {
   translate(-width/2, height*(1-0.042));
   pop();
 
-  image(personajeM, width/2 + posX, height/2 + 31 + posY);
+  image(personajeM, posX,  posY);
 
 
 
@@ -541,10 +541,10 @@ function mPaso1() {
     if (g.llego === true) {
       glist.splice(i, 1);
     } else if (perderV.get(int(g.x.x - posX), int(g.x.y - posY))[0] >100) {
-      //vamosNOB.pause();
+      vamosNOB.pause();
       pasos=3;
     }
   }
-  image(brazosM, width/2 + posX, height/2  + posY);
+  image(brazosM, posX, posY);
   env.torcer();
 }
