@@ -7,19 +7,20 @@ let posY, posX, dirX;
 let glist = [];
 let env;
 
-function preload(){
-}
+
 function setup() {
-  createCanvas(1200, 900, P2D);
+  createCanvas(933, 700, P2D);
   colorMode(HSB, 100);
-  frameRate(25);
+  frameRate(26);
 
 
   //--------------------------------------------
   //CARGA DE AUDIOS
+
   soundFormats('ogg', 'mp3');
   teQueresMatar = loadSound('TeQueresMatar.mp3');
   vamosNOB = loadSound('VamosNOB.mp3');
+
 
   //--------------------------------------------
   //CARGA DE IMAGENES
@@ -65,7 +66,7 @@ function setup() {
   time = 0;
   posY = 0;
   posX = 0;
-  tFinal = 750;
+  tFinal = 900;
   tRuta = 0;
   movX = 0;
   movY = 0;
@@ -175,9 +176,9 @@ function Inicio() {
     image(vGrande, width/2, height/2);
     image(mInicio, width/2, height/2);
   } else if (mouseX < width/2 && mouseY > height/4) {
-    image(vInicio, width/2, height/2);
     image(mGrande, width/2, height/2);
-  } else { 
+    image(vInicio, width/2, height/2);
+  } else {
     image(vInicio, width/2, height/2);
     image(mInicio, width/2, height/2);
   }
@@ -215,7 +216,7 @@ class gota {
   mostrar() {
     noStroke();
     fill(280, 100, 80, 100);
-    ellipse(this.x.x, this.x.y, 9, 9 + (this.x.y - mouseY)*0.35);
+    ellipse(this.x.x, this.x.y, 6, 12 + (this.x.y - mouseY)*0.25);
   }
 
   run() {
@@ -224,7 +225,7 @@ class gota {
   }
 
   verSiLlego() {
-    if (this.x.y + 4.5 + (this.x.y - mouseY)*0.17 > height*0.9 - posY) {
+    if (this.x.y + 6 + (this.x.y - mouseY)*0.125 > height*0.8 - posY) {
       this.llego = true;
     } else {
       this.llego = false;
@@ -243,11 +244,11 @@ function vPaso1() {
   //-------------RUTA---------------
   //---------------------------------
 
-  if (tRuta <39) {
-    set(0, -40-int(posY), img[int(tRuta/3)]);
+  if (tRuta <52) {
+    set(0, -35-int(posY), img[int(tRuta/4)]);
     tRuta +=1;
-  } else if (tRuta === 39) {
-    set(0, -40-int(posY), img[int(tRuta/3)]);
+  } else if (tRuta === 52) {
+    set(0, -35-int(posY), img[int(tRuta/4)]);
     tRuta =0;
   }
 
@@ -256,12 +257,13 @@ function vPaso1() {
   //---------------------------------
 
   if (movY === 0) {
-    if (random(100)>97) {    
+    if (random(100)>96) {    
       posY -= 4;
       movY  = 1;
       sube  = 1;
+      glist.splice(glist.length-1, 1);
     } else {  
-      posY = random(1)*4;
+      posY = random(1)*3;
       movY = 0;
     }
   } else if (movY === 1) {
@@ -286,7 +288,7 @@ function vPaso1() {
 
 
   if (movX === 0) {
-    if (random(100)>98) {    
+    if (random(100)>96) {    
       posX  = random(-1, 1)*2;
       movX  = 1;
       dirX  = posX/abs(posX);
@@ -330,11 +332,15 @@ function vPaso1() {
   translate(width/2, height*(1-0.042)); //mueve el sistema de coordenadas al fondo de la jarra (centrado)
   noStroke();
   fill(350, 100, 70, 100);
-  rect(-50 + posX, posY, 110 + posX, -time/(0.005*tFinal) + posY);
+  if (time > 10) {
+    rect(-35 + posX, posY, 90, -time/(0.005*tFinal) + posY);
+  } else {
+    rect(-35 + posX, posY, 90, -time/(0.005*tFinal));
+  }
   translate(-width/2, height*(1-0.042));
   pop();
 
-  image(personajeV, width/2 + posX, height/2 + 40 + posY);
+  image(personajeV, width/2 + posX, height/2 + 31 + posY);
 
 
 
@@ -372,8 +378,8 @@ function vPaso1() {
   for (let i = glist.length-1; i >= 0; i--) {
     g=glist[i];
     g.update();
-    g.mostrar();
     g.verSiLlego();
+    g.mostrar();
     if (g.llego === true) {
       glist.splice(i, 1);
     } else if (perderV.get(int(g.x.x - posX), int(g.x.y - posY))[0] >100) {
@@ -396,11 +402,11 @@ function mPaso1() {
   //-------------RUTA---------------
   //---------------------------------
 
-  if (tRuta <39) {
-    set(0, -40-int(posY), img[int(tRuta/3)]);
+  if (tRuta <52) {
+    set(0, -35-int(posY), img[int(tRuta/4)]);
     tRuta +=1;
-  } else if (tRuta === 39) {
-    set(0, -40-int(posY), img[int(tRuta/3)]);
+  } else if (tRuta === 52) {
+    set(0, -35-int(posY), img[int(tRuta/4)]);
     tRuta =0;
   }
 
@@ -409,12 +415,13 @@ function mPaso1() {
   //---------------------------------
 
   if (movY === 0) {
-    if (random(100)>97) {    
+    if (random(100)>96) {    
       posY -= 4;
       movY  = 1;
       sube  = 1;
+      glist.splice(glist.length-1, 1);
     } else {  
-      posY = random(1)*4;
+      posY = random(1)*3;
       movY = 0;
     }
   } else if (movY === 1) {
@@ -439,7 +446,7 @@ function mPaso1() {
 
 
   if (movX === 0) {
-    if (random(100)>98) {    
+    if (random(100)>96) {    
       posX  = random(-1, 1)*2;
       movX  = 1;
       dirX  = posX/abs(posX);
@@ -483,11 +490,15 @@ function mPaso1() {
   translate(width/2, height*(1-0.042)); //mueve el sistema de coordenadas al fondo de la jarra (centrado)
   noStroke();
   fill(350, 100, 70, 100);
-  rect(-50 + posX, posY, 110 + posX, -time/(0.005*tFinal) + posY);
+  if (time > 10) {
+    rect(-35 + posX, posY, 90, -time/(0.005*tFinal) + posY);
+  } else {
+    rect(-35 + posX, posY, 90, -time/(0.005*tFinal));
+  }
   translate(-width/2, height*(1-0.042));
   pop();
 
-  image(personajeM, width/2 + posX, height/2 + 40 + posY);
+  image(personajeM, width/2 + posX, height/2 + 31 + posY);
 
 
 
@@ -512,8 +523,8 @@ function mPaso1() {
   //------------GANAR----------------
   //---------------------------------
   if (time === tFinal) {
-    vamosNOB.pause();
-    teQueresMatar.loop();
+    //vamosNOB.pause();
+    //teQueresMatar.loop();
     pasos = 4;
   }
 
@@ -525,12 +536,12 @@ function mPaso1() {
   for (let i = glist.length-1; i >= 0; i--) {
     g=glist[i];
     g.update();
-    g.mostrar();
     g.verSiLlego();
+    g.mostrar();
     if (g.llego === true) {
       glist.splice(i, 1);
     } else if (perderV.get(int(g.x.x - posX), int(g.x.y - posY))[0] >100) {
-      vamosNOB.pause();
+      //vamosNOB.pause();
       pasos=3;
     }
   }
