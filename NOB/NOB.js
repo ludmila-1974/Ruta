@@ -76,7 +76,7 @@ function setup() {
 
 function draw() {
 
-  imageMode(CENTER);
+  //imageMode(CENTER);
 
   if (pasos === 0) {
     Inicio();
@@ -173,14 +173,14 @@ function Inicio() {
   env.vuelca = false;
   set(0, 0, fondoInicio);
   if (mouseX > width/2 && mouseY > height/4) {
-    image(vGrande, width/2, height/2);
-    image(mInicio, width/2, height/2);
+    image(vGrande, 0, 0);
+    image(mInicio, 0, 0);
   } else if (mouseX < width/2 && mouseY > height/4) {
-    image(mGrande, width/2, height/2);
-    image(vInicio, width/2, height/2);
+    image(mGrande, 0, 0);
+    image(vInicio, 0, 0);
   } else {
-    image(vInicio, width/2, height/2);
-    image(mInicio, width/2, height/2);
+    image(vInicio, 0, 0);
+    image(mInicio, 0, 0);
   }
 }
 
