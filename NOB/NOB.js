@@ -523,8 +523,8 @@ function mPaso1() {
   //------------GANAR----------------
   //---------------------------------
   if (time === tFinal) {
-    //vamosNOB.pause();
-    //teQueresMatar.loop();
+    vamosNOB.pause();
+    teQueresMatar.loop();
     pasos = 4;
   }
 
